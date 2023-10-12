@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2090 Business Canvas</title>
+	<style>
+        * {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Common styles for all screen sizes */
+body {
+    background-color: #9fdef5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eeeeee;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #8d8d8d;
+    width: 400px;
+}
+
+label {
+    text-align: left;
+    margin: 10px 0;
+    font-weight: bold;
+    width: 100%;
+}
+
+input {
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #777777;
+}
+
+.click {
+    background-color: #04a204;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.click:hover {
+    background-color: #058605;
+}
+
+textarea {
+    padding: 15px;
+    width: 100%;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #7a7979;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Media Query for Tablets */
+@media (max-width: 768px) {
+    body {
+        justify-content: flex-start; /* Adjust alignment for smaller screens */
+    }
+    
+    form {
+        width: 90%; /* Make the form width 90% of the screen width */
+    }
+}
+
+/* Media Query for Mobile Phones */
+@media (max-width: 480px) {
+    body {
+        align-items: flex-start; /* Adjust alignment for smaller screens */
+    }
+    
+    form {
+        width: 90%; /* Make the form width 90% of the screen width */
+    }
+    
+    .click {
+        font-size: 16px; /* Reduce font size for mobile devices */
+        padding: 10px 20px; /* Adjust padding for mobile devices */
+    }
+}
+
+
+/* You can add more media queries as needed for different screen sizes */
+
+
+	
+	</style>
+</head>
+<body>
+	<div class="content">
+        <center>
+        <form method="post" action="" name="product" id="product">
+            <h1>2090</h1>
+            <p style="font-size: 15px;">INNOVATE-2-SUSTAIN</p>
+            <p style="font-size: 15px;">Internal Final Pitch</p>
+            
+            <label for="naem">Team Number*</label>
+            <input class="fil" type="text" name="team name" placeholder="Enter Number" required>
+
+            <label for="naem">Parameter1*</label>
+            <input class="fil" type="text" name="parameter1" placeholder="Enter parameter1" required>
+
+            <label for="naem">Parameter2*</label>
+            <input class="fil" type="text" name="Parameter2" placeholder="Enter parameter2" required>
+
+            <label for="naem">Parameter 3*</label>
+            <input class="fil" type="text" name="Parameter3" placeholder="Enter parameter3" required>
+
+            <label for="naem">Parameter 4*</label>
+            <input class="fil" type="text" name="Parameter4" placeholder="Enter parameter4" required>
+
+            <button class="click" id="submitBtn">Submit &#10132;</button>
+        </form>
+        </center>
+      
+    </div>
+
+    <!-- Modal dialog for the thank you message -->
+    <div class="modal" id="thankYouModal">
+        <div class="modal-content">
+            <p style="font-weight: bold; color: green;">Thank you! Your form is submitted successfully.</p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwgnusUG5844-MYzxyfzCgUmpbhiozx_uH_ybjOwC1TqGWG3TsnMCfh-YnNc2bJjIM/exec'
+        const form = document.forms['product'];
+        const submitBtn = document.getElementById('submitBtn');
+        const thankYouModal = document.getElementById('thankYouModal');
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                openModal(); // Show the modal dialog
+                form.reset(); // Optionally, reset the form fields
+            })
+            .catch(error => console.error('Error!', error.message));
+        });
+
+        function openModal() {
+            thankYouModal.style.display = 'block';
+        }
+
+        function closeModal() {
+            thankYouModal.style.display = 'none';
+        }
+      </script>
+      
+    <br>
+</body>
+</html>
